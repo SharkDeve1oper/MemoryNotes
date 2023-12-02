@@ -8,8 +8,19 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
+    <androidx.appcompat.widget.SearchView
+        android:background="@color/searchBar"
+        android:layout_alignParentTop="true"
+        android:id="@+id/searchView_home"
+        app:iconifiedByDefault="false"
+        app:queryHint="Название заметки..."
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_home"
+        android:layout_below="@+id/searchView_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"

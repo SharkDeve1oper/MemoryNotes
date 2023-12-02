@@ -16,15 +16,15 @@ public interface MainDAO {
     @Insert (onConflict = Companion.REPLACE)
     void insert(Note note);
 
-    @Query("SELECT * FROM note ORDER BY pinned, date DESC")
+    @Query("SELECT * FROM note ORDER BY pinned DESC, date DESC")
     List<Note> getAll();
-
-    @Query("UPDATE note SET title = :title, data = :data, pinned = :pinned WHERE id = :id ")
-    void update(int id, String title, String data, boolean pinned);
 
     @Query("UPDATE note SET title = :title, data = :data WHERE id = :id ")
     void update(int id, String title, String data);
 
     @Delete
     void delete(Note note);
+
+    @Query("UPDATE note SET pinned = :pin WHERE id = :id")
+    void pin(int id, boolean pin);
 }

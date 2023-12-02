@@ -4,7 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#7E7777</color>
 
-    <color name="color1">#236681</color>
-    <color name="color2">#6FA631</color>
-    <color name="color3">#A68531</color>
+    <color name="searchBar">#8ADF7171</color>
+
+    <color name="color1">#369EC8</color>
+    <color name="color2">#9DEC45</color>
+    <color name="color3">#FBCA4D</color>
 </resources>

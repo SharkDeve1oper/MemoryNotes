@@ -1,5 +1,6 @@
 package sharkdeve1oper.apps.memorynotes.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,16 +77,20 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder>{
         colorCode.add(R.color.color2);
         colorCode.add(R.color.color3);
 
-        Random random = new Random();
-        int random_color = random.nextInt(colorCode.size());
-
-        return random_color;
+        return colorCode.get(new Random().nextInt(colorCode.size()));
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(List<Note> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
+    }
+
 }
 
 class NotesViewHolder extends RecyclerView.ViewHolder {
