@@ -8,7 +8,6 @@
     tools:context=".NotesTakerActivity"
     android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_notes"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"
         android:background="@color/color1"
@@ -29,10 +28,10 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/editText_title"
+        android:id="@+id/textViewMark_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Название:"
+        android:text="Название:"
         android:textColorHint="@color/black"
         android:padding="8dp"
         android:textStyle="bold"
@@ -40,10 +39,10 @@
         android:textColor="@color/black"
         android:maxLines="1"/>
     <TextView
-        android:id="@+id/editText_data"
+        android:id="@+id/textViewMark_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Текст:"
+        android:text="Текст:"
         android:textColorHint="@color/black"
         android:padding="8dp"
         android:textStyle="normal"

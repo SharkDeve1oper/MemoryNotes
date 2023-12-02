@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
                         assert data != null;
+
                         Note new_note = (Note) data.getSerializableExtra("note");
                         boolean statusUpdate = (boolean) data.getSerializableExtra("status");
                         if (statusUpdate) {
@@ -167,7 +168,9 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             return true;
         }
         else if (itemId == R.id.markdown) {
-
+            Intent intent = new Intent(MainActivity.this, MarkDownReaderActivity.class);
+            intent.putExtra("note_reader",selectedNote);
+            activityResultLauncher.launch(intent);
         }
         return false;
     }
