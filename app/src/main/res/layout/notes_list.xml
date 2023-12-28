@@ -20,7 +20,7 @@
                 android:id="@+id/textView_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Заголовок"
+                android:text="@string/TopName"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -35,7 +35,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_pinned"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
             <TextView
                 android:id="@+id/textView_data"
@@ -44,7 +45,7 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 android:padding="8dp"
-                android:text="Содержимое"
+                android:text="@string/Content"
                 android:textColor="@color/black"
                 android:maxLines="10"/>
             <TextView
@@ -53,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
                 android:padding="8dp"
-                android:text="Дата"
+                android:text="@string/Date"
                 android:textColor="@color/grey"
                 android:maxLines="1"
                 android:ellipsize="marquee"

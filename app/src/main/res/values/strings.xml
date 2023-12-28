@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Memory Notes</string>
+    <string name="MarkReaderText">MarkReader</string>
+    <string name="NameText">Название:</string>
+    <string name="Text">Текст:</string>
+    <string name="todo">TODO</string>
+    <string name="Content">Содержимое</string>
+    <string name="Date">Дата</string>
+    <string name="TopName">Заголовок</string>
 </resources>

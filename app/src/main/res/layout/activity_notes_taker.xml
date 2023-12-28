@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotesTakerActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".NotesTakerActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_notes"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white"
-        android:background="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/imageView_save"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_save"
-                android:padding="6dp"
-                android:background="@android:color/transparent"
                 android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"/>
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ic_save"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -32,22 +35,27 @@
         android:id="@+id/editText_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Название: "
-        android:textColorHint="@color/black"
+        android:autofillHints="@string/NameText"
+        android:hint="@string/NameText"
+        android:maxLines="1"
+        android:minHeight="48dp"
         android:padding="8dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:maxLines="1"/>
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/editText_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Текст: "
-        android:textColorHint="@color/black"
+        android:autofillHints="@string/Text"
+        android:hint="@string/Text"
+        android:maxLines="25"
+        android:minHeight="48dp"
         android:padding="8dp"
-        android:textStyle="normal"
-        android:textSize="18sp"
         android:textColor="@color/black"
-        android:maxLines="25"/>
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        android:textStyle="normal" />
 </LinearLayout>

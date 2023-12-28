@@ -7,23 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".NotesTakerActivity"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color1"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"
-        android:background="@color/color1"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        tools:ignore="TextSizeCheck">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MarkReader"
-                android:textSize="34sp"
+                android:gravity="center"
+                android:text="@string/MarkReaderText"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textSize="34sp"
+                android:textStyle="bold" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -31,7 +35,7 @@
         android:id="@+id/textViewMark_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Название:"
+        android:text="@string/NameText"
         android:textColorHint="@color/black"
         android:padding="8dp"
         android:textStyle="bold"
@@ -44,7 +48,7 @@
         android:id="@+id/textViewMark_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Текст:"
+        android:text="@string/Text"
         android:textColorHint="@color/black"
         android:padding="8dp"
         android:textStyle="normal"

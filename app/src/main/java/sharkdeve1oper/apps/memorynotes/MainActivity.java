@@ -112,9 +112,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 }
             }
 
-            handler.post(() -> {
-                notesListAdapter.filterList(filteredList);
-            });
+            handler.post(() -> notesListAdapter.filterList(filteredList));
         });
         executor.shutdown();
     }

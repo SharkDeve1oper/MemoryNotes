@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,37 +40,34 @@ public class NotesTakerActivity extends AppCompatActivity {
             editText_data.setText(note.getData());
             isOldNote = true;
         }
-        catch (Exception ignored) {
-            ignored.printStackTrace();
+        catch (Exception exception) {
+            exception.printStackTrace();
         }
-        imageView_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = editText_title.getText().toString();
-                String description = editText_data.getText().toString();
+        imageView_save.setOnClickListener(v -> {
+            String title = editText_title.getText().toString();
+            String description = editText_data.getText().toString();
 
-                if (description.isEmpty()) {
-                    Toast.makeText(NotesTakerActivity.this, "Пожалуйста, введите содержимое", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (title.isEmpty()) {
-                    Toast.makeText(NotesTakerActivity.this, "Пожалуйста, введите заголовок", Toast.LENGTH_SHORT).show();
-                }
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat datePattern = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
-                Date date = new Date();
-
-                if (!isOldNote) note = new Note();
-                note.setTitle(title);
-                note.setData(description);
-                note.setDate(datePattern.format(date));
-
-                Intent intent = new Intent();
-                intent.putExtra("note", note);
-                intent.putExtra("status", isOldNote);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+            if (description.isEmpty()) {
+                Toast.makeText(NotesTakerActivity.this, "Пожалуйста, введите содержимое", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (title.isEmpty()) {
+                Toast.makeText(NotesTakerActivity.this, "Пожалуйста, введите заголовок", Toast.LENGTH_SHORT).show();
+            }
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat datePattern = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+            Date date = new Date();
+
+            if (!isOldNote) note = new Note();
+            note.setTitle(title);
+            note.setData(description);
+            note.setDate(datePattern.format(date));
+
+            Intent intent = new Intent();
+            intent.putExtra("note", note);
+            intent.putExtra("status", isOldNote);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
     }
 }

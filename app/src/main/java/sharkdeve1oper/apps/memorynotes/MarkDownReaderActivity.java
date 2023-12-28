@@ -30,8 +30,8 @@ public class MarkDownReaderActivity extends AppCompatActivity {
             textView_data.setText(spanned);
             textView_title.setText(note.getTitle());
         }
-        catch (Exception ignored) {
-            ignored.printStackTrace();
+        catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 }
