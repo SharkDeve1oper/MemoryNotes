@@ -104,18 +104,24 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
         Handler handler = new Handler(Looper.getMainLooper());
 
-        executor.execute(() -> {
-            List<Note> filteredList = new ArrayList<>();
-            for (Note singleNote: notes) {
-                if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())) {
-                    filteredList.add(singleNote);
+        int chunkSize = (int) Math.ceil((double) notes.size() / numberOfThreads);
+        for (int i = 0; i < numberOfThreads; i++) {
+            final int start = i * chunkSize;
+            final int end = Math.min(start + chunkSize, notes.size());
+            executor.execute(() -> {
+                List<Note> filteredList = new ArrayList<>();
+                for (int j = start; j < end; j++) {
+                    Note singleNote = notes.get(j);
+                    if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                        filteredList.add(singleNote);
+                    }
                 }
-            }
-
-            handler.post(() -> notesListAdapter.filterList(filteredList));
-        });
+                handler.post(() -> notesListAdapter.filterList(filteredList));
+            });
+        }
         executor.shutdown();
     }
+
 
     private void updateRecycler(List<Note> notes) {
         recyclerView.setHasFixedSize(true);
