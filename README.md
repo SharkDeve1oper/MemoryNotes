@@ -17,22 +17,28 @@ Memory Notes - это идеальный инструмент для тех, к�
 ## О многопоточности
 
 ```java
-    private void filter(String newText) {
-        int numberOfThreads = Runtime.getRuntime().availableProcessors();
-        ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
-        Handler handler = new Handler(Looper.getMainLooper());
+private void filter(String newText) {
+    int numberOfThreads = Runtime.getRuntime().availableProcessors();
+    ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
+    Handler handler = new Handler(Looper.getMainLooper());
 
+    int chunkSize = (int) Math.ceil((double) notes.size() / numberOfThreads);
+    for (int i = 0; i < numberOfThreads; i++) {
+        final int start = i * chunkSize;
+        final int end = Math.min(start + chunkSize, notes.size());
         executor.execute(() -> {
             List<Note> filteredList = new ArrayList<>();
-            for (Note singleNote: notes) {
+            for (int j = start; j < end; j++) {
+                Note singleNote = notes.get(j);
                 if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())) {
                     filteredList.add(singleNote);
                 }
             }
             handler.post(() -> notesListAdapter.filterList(filteredList));
         });
-        executor.shutdown();
     }
+    executor.shutdown();
+}
 ```
 
 Функция `filter(String newText)` выполняет следующие действия:
@@ -41,15 +47,14 @@ Memory Notes - это идеальный инструмент для тех, к�
 
 2. Создает обработчик для основного потока Looper с помощью `new Handler(Looper.getMainLooper())`.
 
-3. Запускает новый поток в пуле потоков, который выполняет следующие действия:
-    - Создает новый список `filteredList`.
-    - Проходит по каждой заметке в списке `notes`.
-    - Если заголовок заметки содержит `newText` (без учета регистра), то заметка добавляется в `filteredList`.
+3. Вычисляет размер "куска" списка `notes`, который будет обрабатываться каждым потоком. Размер "куска" вычисляется как общее количество заметок, деленное на количество потоков, округленное вверх.
 
-4. После завершения потока, обработчик выполняет метод `filterList(filteredList)` адаптера `notesListAdapter` в основном потоке.
+4. Запускает цикл от 0 до `numberOfThreads`. Для каждого потока выполняются следующие действия:
+    - Определяются начальный и конечный индексы "куска" списка, который будет обрабатываться этим потоком.
+    - Запускается новый поток, который создает новый список `filteredList` и проходит через свой "кусок" списка `notes`. Если заголовок заметки содержит `newText` (без учета регистра), то заметка добавляется в `filteredList`.
+    - После завершения потока, обработчик выполняет метод `filterList(filteredList)` адаптера `notesListAdapter` в основном потоке.
 
-5. Наконец, пул потоков останавливается с помощью `executor.shutdown()`.
-
+5. После запуска всех потоков, пул потоков останавливается с помощью `executor.shutdown()`.
 
 # Скриншоты
 
